@@ -1,0 +1,24 @@
+REST API - JSON
+
+GET /users = HTML Document Render
+// ager ek browser jo h vo req bhejta h to seedha html document chala jaye. 
+
+// pr ager koi devloper h ya ham app bna rhe h or api use krna chahte h to me us case me json data bhejunga
+GET /api/users/1 = get the user with ID 1
+GET /api/users/2 = get the user with ID 2
+// Dynamic Path Parameter
+GET /api/users/:id
+id -> Variable | Dynamic
+
+
+Route -> /api/users/:id
+PATCH /api/users/1 = EDIT the user with ID 1
+DELETE /api/users/1 = Delete the user with ID 1
+
+
+Route -> /api/user
+POST /api/users = create new user
+
+{
+  we will arrange data to make this api or for testing from mockaroo.com
+}

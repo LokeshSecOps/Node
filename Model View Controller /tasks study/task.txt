@@ -1,0 +1,49 @@
+
+
+### Recommended Folder & Execution Structure
+
+To keep your project clean and maintain this exact sequence, organize your files like this:
+
+```text
+my-app/
+│
+├── index.js          # Entry point (Server, middlewares, main router connection)
+├── connection.js     # Database connection setup
+│
+├── models/           # Mongoose schemas and models (Talks to DB)
+│   └── user.model.js
+│
+├── controllers/      # Business logic functions (Handles req & res)
+│   └── user.controller.js
+│
+└── routes/           # Maps endpoints to controller functions
+    └── user.routes.js
+
+```
+
+
+in index.js :
+// 1. IMPORTS & DEPENDENCIES
+const express = require('express')
+const { connectMongoDb } = require('./connection')
+const { logReqRes } = require('./middlewares')
+const userRouter = require('./routes/user')
+
+// 2. APP INITIALIZATION
+const app = express()
+const PORT = 8000
+
+// 3. DATABASE CONNECTION
+connectMongoDb('mongodb://127.0.0.1:27017/DATABASE')
+  .then(() => console.log("Database connected successfully"))
+
+// 4. GLOBAL MIDDLEWARES (Must be placed BEFORE routes)
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+app.use(logReqRes('log.txt')) // Custom request logger
+
+// 5. ROUTES (Mounted AFTER body parsers)
+app.use('/api/users', userRouter)
+
+// 6. SERVER LISTENER
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`))

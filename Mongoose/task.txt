@@ -1,0 +1,13 @@
+1. First Mongodb service/ mongo demon -> mongosh
+2. npm i mongoose in folder
+3. use dbs - in terminal
+4. show dbs
+5. use Database_name
+6. show collections
+7. db.users.find()
+8. 
+
+
+
+note :
+use "nodemon index.js" , it is better than node index.js as we do not have to restart server everytime. -> npm i nodemon
